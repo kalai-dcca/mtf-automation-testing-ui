@@ -1,0 +1,21 @@
+{
+   "name": "pw-bddtest",
+   "version": "1.0.0",
+   "main": "index.js",
+   "scripts": {
+      "test": "npx bddgen && npx playwright test",
+      "headed": "npx bddgen && npx playwright test --headed",
+      "report": "npx playwright show-report reports",
+      "usermngmt": "npx bddgen src/features/userManagement/login.feature && npx playwright test --headed",
+      "uitest": "npx bddgen && npx playwright test --ui"
+   },
+   "keywords": [],
+   "author": "",
+   "license": "ISC",
+   "description": "",
+   "devDependencies": {
+      "playwright-bdd": "^8.0.0",
+      "prettier": "^3.4.2",
+      "@types/node": "^22.10.2"
+   }
+}

@@ -1,0 +1,16 @@
+# Normalize line endings
+* text=auto
+
+# Enforce LF for code files
+*.js text eol=lf
+*.ts text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+
+# Exclude build outputs
+build/** binary
+dist/** binary 
+
+# Editor settings and IDE configs
+.idea/** binary
+.vscode/** binary
