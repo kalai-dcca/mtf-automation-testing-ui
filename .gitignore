@@ -1,1 +1,11 @@
-.idea
+node_modules/
+/test-results/
+/playwright-report/
+/playwright/
+/.cache/
+/dist/
+/.vscode/
+/.DS_Store/
+/reports/
+/output/
+.idea/
