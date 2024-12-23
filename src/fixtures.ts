@@ -1,8 +1,8 @@
 import { test as base, createBdd } from 'playwright-bdd';
 
 // -- List of Page Object Class -- //
-import { Login } from './pages/login';
-import { Home } from './pages/home';
+import { Login } from './tests/userManagement/pages/login';
+import { Home } from './tests/userManagement/pages/home';
 
 type pageObjFixtures = {
    loginPage: Login;

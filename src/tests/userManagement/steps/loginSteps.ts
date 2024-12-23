@@ -1,4 +1,4 @@
-import { Given, When, Then } from '../fixtures';
+import { Given, When, Then } from '../../../fixtures';
 
 Given('I navigate to the login page', async ({ loginPage }) => {
    await loginPage.open();
