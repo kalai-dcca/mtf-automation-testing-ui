@@ -37,7 +37,7 @@ export class Login {
     */
    async processLogin(user?: string, pass?: string) {
       const username = process.env.TESTUSER || user || 'standard_user';
-      const password = process.env.PASSWORD || pass || '';
+      const password = process.env.PASSWORD || pass || 'secret_sauce';
 
       // enter username, password and click Sign In button
       await this.page.locator(loc_username).fill(username);

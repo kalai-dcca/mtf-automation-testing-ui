@@ -1,5 +1,6 @@
 Feature: Login functionality
 
+  @login
   Scenario: Successful login
     Given I navigate to the login page
     When I enter valid credentials
