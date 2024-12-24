@@ -37,13 +37,13 @@ export default defineConfig({
    retries: 2, // Retries tests up to 2 times if they fail
 
    // Global setup and teardown
-   globalSetup: require.resolve('./global-setup'),
-   globalTeardown: require.resolve('./global-teardown'),
+   // globalSetup: require.resolve('./global-setup'),
+   // globalTeardown: require.resolve('./global-teardown'),
 
    // Shared test configuration
    use: {
    
-   headless: true, // Run tests in headless mode
+   headless: false, // Run tests in headless mode
    viewport: { width: 1980, height: 1080 },  //Define screen resolution
    actionTimeout: 0, // Action timeouts: 0 seconds
    navigationTimeout: 30000, // Navigation timeouts: 3 seconds
