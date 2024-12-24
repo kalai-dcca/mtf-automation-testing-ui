@@ -18,4 +18,4 @@ Feature: Verify navigation options under My Info
       | Salary                |
       | Report-to             |
       | Qualifications        |
-      | Memberships           |
+  

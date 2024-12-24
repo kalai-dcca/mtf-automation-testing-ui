@@ -42,4 +42,4 @@ export class LoginManufacturerPage {
       await this.page.locator(loc_password).fill(password);
       await this.page.locator(loc_signinBttn).click();
    }
-} //end::Login
+} 

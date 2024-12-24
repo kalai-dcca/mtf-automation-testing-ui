@@ -6,7 +6,6 @@ export class HomePageSidePanel {
   constructor(page: Page) {
     this.page = page;
   }
-
   // Locators
   private searchBox = "//input[@placeholder='Search']"; 
   private searchResults = "//a[contains(@class,'oxd-main-menu-item')]//span";

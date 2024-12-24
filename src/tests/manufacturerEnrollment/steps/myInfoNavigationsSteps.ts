@@ -1,9 +1,7 @@
 import { Given, When, Then } from '../../../fixtures';
 import { expect, Page } from '@playwright/test';
-
 import { HomePageSidePanel } from '../pages/sidePanel';
 import { MyInformationPage } from '../pages/myInfoPage';
-
 
 Given('I navigate to the {string} section', async ({page}, pageName: string) => {
   // Navigate to the section page

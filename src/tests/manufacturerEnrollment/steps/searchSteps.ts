@@ -1,6 +1,7 @@
 import { Given, When, Then } from '../../../fixtures';
 import { expect } from 'playwright/test';
 
+
 When('I enter {string} in the search box', async ({searchPage}, query: string) => {
    await searchPage.enterSearchQuery(query);
  });

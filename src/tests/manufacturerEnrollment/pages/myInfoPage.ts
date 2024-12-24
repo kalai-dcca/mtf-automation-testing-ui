@@ -15,5 +15,4 @@ export class MyInformationPage {
     const results = await this.page.locator(this.listOptions).allTextContents();
     return results;
   }
-
 }
