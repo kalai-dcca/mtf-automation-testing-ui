@@ -1,4 +1,5 @@
-import { Page, Locator } from 'playwright/test';
+import { stat } from 'fs';
+import { Page, Locator, expect } from 'playwright/test';
 
 export enum FunctionType{
     FIND_ELEMENT_CLICK,
@@ -20,6 +21,11 @@ export class UIActionUtilities{
         console.log(`[${functionType}] Element: ${element}, Status: ${status}, Text: ${text ?? 'N/A'}`);
     }
 
+    private static error(functionType: FunctionType, locator: Locator, status: boolean, error: any): void{
+        const element = locator.toString();
+        console.log(`[${functionType}] Element: ${element}, Status: ${status}, Error: ${error.message}`);
+    }
+
    
     
 
@@ -30,20 +36,11 @@ export class UIActionUtilities{
      */    
     async findElementClick(Locator: Locator): Promise<boolean>{
         let status = false;
-        try{
-            if(await this.isElementVisible(Locator)){
-                await Locator.click();
-                status = true;
-                UIActionUtilities.print(FunctionType.FIND_ELEMENT_CLICK,Locator,status);
-                return status;
-            }else{
-                status = false;
-            }
-        } catch(error){
-            UIActionUtilities.print(FunctionType.FIND_ELEMENT_CLICK,Locator,status);
-            console.error(error);
-            return status;
-        }
+        await expect(Locator).toBeVisible()
+            .then(() => Locator.click())
+            .then(() => status = true)
+            .then(() => UIActionUtilities.print(FunctionType.FIND_ELEMENT_CLICK,Locator,status))
+            .catch(e => UIActionUtilities.error(FunctionType.FIND_ELEMENT_CLICK,Locator,status,e));
         return status;
     }
 
@@ -55,33 +52,27 @@ export class UIActionUtilities{
      */
     async isElementVisible(Locator: Locator): Promise<boolean>{
         let status = false;
-        try{
-            await Locator.isVisible();
-            status = true;
-            UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_VISIBILITY,Locator,status);
-            return status;
-        } catch(error){
-            UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_VISIBILITY,Locator,status);
-            console.error(error);
-        }
+        await expect(Locator).toBeVisible()
+            .then(() => status = true)
+            .then(() => UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_VISIBILITY,Locator,status))
+            .catch(e => UIActionUtilities.error(FunctionType.VERIFY_ELEMENT_VISIBILITY,Locator,status,e));
         return status;
     }
 
+
+    /**
+     * Function to Input text into Field element
+     * @param Locator 
+     * @param text 
+     * @returns 
+     */
     async inputElement(Locator: Locator, text: string): Promise<boolean>{
         let status = false;
-        try{
-            if(await this.isElementVisible(Locator)){
-                await Locator.fill(text);
-                status = true;
-                UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_VISIBILITY,Locator,status,text);
-                return status;
-            }else{
-                status = false;
-            }
-        } catch(error){
-            UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_VISIBILITY,Locator,status,text);
-            console.error(error);
-        }
+        await expect(Locator).toBeVisible()
+            .then(() => Locator.fill(text))
+            .then(() => status = true)
+            .then(() => UIActionUtilities.print(FunctionType.INPUT_TEXT_FIELD,Locator,status))
+            .catch(e => UIActionUtilities.error(FunctionType.INPUT_TEXT_FIELD,Locator,status,e));
         return status;
     }
 
@@ -94,21 +85,10 @@ export class UIActionUtilities{
      */
     async verifyElementText(Locator: Locator, expected: string): Promise<boolean>{
         let status = false;
-        try{
-            if(await this.isElementVisible(Locator)){
-                const actual = await Locator.textContent();
-                if(actual?.includes(expected)){
-                    status = true;
-                }
-                UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_TEXT_VALUE,Locator,status,expected);
-                return status;
-            }else{
-                status = false;
-            }
-        } catch(error){
-            UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_TEXT_VALUE,Locator,status,expected);
-            console.error(error);
-        }
+        await expect(Locator).toHaveText(expected)
+            .then(() => status = true)
+            .then(() => UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_TEXT_VALUE,Locator,status))
+            .catch(e => UIActionUtilities.error(FunctionType.VERIFY_ELEMENT_TEXT_VALUE,Locator,status,e));
         return status;
     }
 
@@ -117,14 +97,13 @@ export class UIActionUtilities{
      * Function to Scroll to an Element
      * @param Locator 
      */
-    async scrollToElement(Locator: Locator){
-        try{
-            await Locator.scrollIntoViewIfNeeded();
-            UIActionUtilities.print(FunctionType.SCROLL_TO_ELEMENT,Locator,true);
-        }catch (error){
-            UIActionUtilities.print(FunctionType.SCROLL_TO_ELEMENT,Locator,false);
-            console.error(error);
-        }
+    async scrollToElement(Locator: Locator): Promise<boolean>{
+        let status = false;
+        await expect(Locator).toBeVisible()
+            .then(() => Locator.scrollIntoViewIfNeeded())
+            .then(() => UIActionUtilities.print(FunctionType.SCROLL_TO_ELEMENT,Locator,status))
+            .catch(e => UIActionUtilities.error(FunctionType.SCROLL_TO_ELEMENT,Locator,e,status));
+        return status;
     }
 
 
@@ -136,14 +115,10 @@ export class UIActionUtilities{
      */
     async waitForVisibility(Locator: Locator, timeout: number = 30000): Promise<boolean>{
         let status = false;
-        try{
-            await Locator.waitFor({state: 'visible',timeout});
-            status = true;
-            UIActionUtilities.print(FunctionType.WAIT_FOR_VISIBILITY,Locator,status);
-        } catch(error){
-            UIActionUtilities.print(FunctionType.WAIT_FOR_VISIBILITY,Locator,status);
-            console.error(error);
-        }
+        await Locator.waitFor({state: 'visible',timeout})
+            .then(() => status = true)
+            .then(() => UIActionUtilities.print(FunctionType.WAIT_FOR_VISIBILITY,Locator,status))
+            .catch(e => UIActionUtilities.error(FunctionType.WAIT_FOR_VISIBILITY,Locator,e,status));
         return status;
     }
 
@@ -156,14 +131,11 @@ export class UIActionUtilities{
      */
     async dropdownSelect(Locator: Locator, expected: string): Promise<boolean>{
         let status = false;
-        try{
-            await Locator.selectOption(expected);
-            status = true;
-            UIActionUtilities.print(FunctionType.DROPDOWN_SELECT,Locator,status);
-        } catch(error){
-            UIActionUtilities.print(FunctionType.DROPDOWN_SELECT,Locator,status);
-            console.error(error);
-        }
+        await expect(Locator).toBeVisible()
+        .then(() => Locator.selectOption(expected))
+        .then(() => status = true)
+        .then(() => UIActionUtilities.print(FunctionType.DROPDOWN_SELECT,Locator,status))
+        .catch(e => UIActionUtilities.error(FunctionType.DROPDOWN_SELECT,Locator,e,status));
         return status;
     }
 
@@ -176,18 +148,20 @@ export class UIActionUtilities{
      */
     async dropdownSelectIgnoreCase(Locator: Locator, expected: string): Promise<boolean>{
         let status = false;
-        try{
+
+        await expect(Locator).toBeVisible()
+        .then(async () => {
             const options = await Locator.locator('option').allTextContents();
             const match = options.find(o => o.toLowerCase() === expected.toLowerCase());
             if(match){
                 await Locator.selectOption({label: match});
                 status = true;
+                UIActionUtilities.print(FunctionType.DROPDOWN_SELECT_IGNORE_CASE,Locator,status);
+            }else{
+                throw new Error(`No match for: ${expected}`);
             }
-            UIActionUtilities.print(FunctionType.DROPDOWN_SELECT_IGNORE_CASE,Locator,status);
-        } catch(error){
-            UIActionUtilities.print(FunctionType.DROPDOWN_SELECT_IGNORE_CASE,Locator,status);
-            console.error(error);
-        }
+        })
+        .catch(e => UIActionUtilities.error(FunctionType.DROPDOWN_SELECT_IGNORE_CASE,Locator,e,status));
         return status;
     }
 
