@@ -4,9 +4,9 @@ import { defineBddConfig } from 'playwright-bdd';
 
 
 const testDir = defineBddConfig({
-   features: 'src/tests/**/features/',
-   steps: 'src/tests/**/steps/',
-   importTestFrom: 'src/fixtures.ts',
+   features: 'src/tests/**/features/',      //Path to feature files
+   steps: 'src/tests/**/steps/',            //Path to step definition files
+   importTestFrom: 'src/fixtures.ts',       //Optional: Shared fictures
 });
 
 export default defineConfig({
@@ -14,12 +14,11 @@ export default defineConfig({
 
    // Specify the test files to match - this will include all test files in the specified directories
    testMatch: [
-      'tests/claims/**/*.feature',                       // Match all .ts  test files in Claims and its subdirectories
-      'tests/dataExchange/**/*.feature',                 // Match all .ts  test files in Data Exchange and its subdirectories
-      'tests/dispensingEntityEnrollment/**/*.feature',   // Match all .ts  test files in Dispensing Entity Enrollment and its subdirectories
-      'tests/manufacturerEnrollment/**/*.feature',       // Match all .ts  test files in Manufacturer Enrollment and its subdirectories
-      'tests/shared/**/*.feature',                       // Match all .ts  test files in Shared and its subdirectories
-      'tests/userManagement/**/*.feature',               // Match all .ts  test files in User Management and its subdirectories
+      'tests/claims/**/*.feature',                       // Match all .ts  test files in Claims and its subdirectories                              //Command for running  npx playwright test tests/claims
+      'tests/dataExchange/**/*.feature',                 // Match all .ts  test files in Data Exchange and its subdirectories                       //Command for running  npx playwright test tests/dataExchange
+      'tests/dispensingEntityEnrollment/**/*.feature',   // Match all .ts  test files in Dispensing Entity Enrollment and its subdirectories        //Command for running  npx playwright test tests/dispensingEntityEnrollment
+      'tests/manufacturerEnrollment/**/*.feature',       // Match all .ts  test files in Manufacturer Enrollment and its subdirectories             //Command for running  npx playwright test tests/manufacturerEnrollment
+      'tests/userManagement/**/*.feature',               // Match all .ts  test files in User Management and its subdirectories                     //Command for running  npx playwright test tests/userManagement
 
    ],
 
