@@ -37,8 +37,8 @@ export default defineConfig({
    retries: 2, // Retries tests up to 2 times if they fail
 
    // Global setup and teardown
-   // globalSetup: require.resolve('./global-setup'),
-   // globalTeardown: require.resolve('./global-teardown'),
+  // globalSetup: require.resolve('./global-setup'),
+  //  globalTeardown: require.resolve('./global-teardown'), 
 
    // Shared test configuration
    use: {
@@ -60,15 +60,15 @@ export default defineConfig({
  projects: [
     {
       name: 'Chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: { ...devices['Desktop Chrome'] },      // npx playwright test  --project=Chromium      For running only with Chrome
     },
     {
       name: 'Firefox',
-      use: { ...devices['Desktop Firefox'] },
+      use: { ...devices['Desktop Firefox'] },     // npx playwright test  --project=Firefox      For running only with Firefox
     },
     {
       name: 'Webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { ...devices['Desktop Safari'] },      // npx playwright test  --project=Safari      For running only with Safari
     },
  
   ],
