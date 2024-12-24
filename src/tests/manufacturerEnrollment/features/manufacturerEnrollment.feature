@@ -12,4 +12,4 @@ Feature: Main menu Search functionality
     Examples:
     |keyword|
     |Leave|
-    |admin|
+    |Admin|
