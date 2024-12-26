@@ -58,3 +58,4 @@ logs/
 /reports/
 /output/
 .idea/
+.features-gen
