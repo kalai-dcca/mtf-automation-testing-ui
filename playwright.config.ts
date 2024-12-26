@@ -44,10 +44,10 @@ export default defineConfig({
    
    headless: false, // Run tests in headless mode
    viewport: { width: 1980, height: 1080 },  //Define screen resolution
-   actionTimeout: 0, // Action timeouts: 0 seconds
+   actionTimeout: 10, // Action timeouts: 1 seconds
    navigationTimeout: 30000, // Navigation timeouts: 3 seconds
    trace: 'retain-on-failure', // Collect traces on failures
-   screenshot: 'on', // Capture screenshots for all tests
+   screenshot: 'only-on-failure', // Capture screenshots for all tests
    video: 'retain-on-failure', // Record video on failures
    ignoreHTTPSErrors: true, // Ignore HTTPS errors
    launchOptions: {
@@ -61,14 +61,14 @@ export default defineConfig({
       name: 'Chromium',
       use: { ...devices['Desktop Chrome'] },      // npx playwright test  --project=Chromium      For running only with Chrome
     },
-    {
-      name: 'Firefox',
-      use: { ...devices['Desktop Firefox'] },     // npx playwright test  --project=Firefox      For running only with Firefox
-    },
-    {
-      name: 'Webkit',
-      use: { ...devices['Desktop Safari'] },      // npx playwright test  --project=Safari      For running only with Safari
-    },
+    // {
+    //   name: 'Firefox',
+    //   use: { ...devices['Desktop Firefox'] },     // npx playwright test  --project=Firefox      For running only with Firefox
+    // },
+    // {
+    //   name: 'Webkit',
+    //   use: { ...devices['Desktop Safari'] },      // npx playwright test  --project=Safari      For running only with Safari
+    // },
  
   ],
 
