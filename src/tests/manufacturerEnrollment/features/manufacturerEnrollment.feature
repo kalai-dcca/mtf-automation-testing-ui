@@ -12,3 +12,4 @@ Feature: Main menu Search functionality
     |keyword|
     |Leave|
     |Admin|
+
