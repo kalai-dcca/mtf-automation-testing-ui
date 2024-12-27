@@ -10,9 +10,9 @@ const testDir = defineBddConfig({
 
 export default defineConfig({
    testDir,
-   timeout: 60000, // Set maximum test run time to 60 seconds
+   timeout: 60*1000, // Set maximum test run time to 60 seconds
    expect: {
-      timeout: 10000, // Expected condition wait times set to 10 seconds
+      timeout: 10*1000, // Expected condition wait times set to 10 seconds
    },
 
    // Parallel test execution
@@ -35,7 +35,9 @@ export default defineConfig({
       launchOptions: {
          slowMo: 50, // Add a delay for debugging (optional)
       },
+
    },
+
 
    // Cross-browser testing
    projects: [
@@ -79,7 +81,7 @@ export default defineConfig({
 
    // Reporters
    reporter: [
-      ['list'], // Console output
+      ['list', { printSteps: true}], // Console output
       ['html', { outputFolder: 'reports/html-report', open: 'never' }], // HTML report
       ['json', { outputFile: 'reports/report.json' }], // JSON report
       ['junit', { outputFile: 'reports/junit-report.xml' }], // JUnit report
