@@ -40,19 +40,42 @@ export default defineConfig({
    // Cross-browser testing
    projects: [
       {
-         name: 'Chromium',
-         use: { ...devices['Desktop Chrome'] }, // Desktop Chrome configuration
+        name: 'Claims Tests',
+        testMatch: 'claims/features/*.spec.js', // Match only .feature files in the claims/features folder
+        use: { ...devices['Desktop Chrome'] },
       },
-      // Uncomment these blocks if you want to add more browsers
-      // {
-      //   name: 'Firefox',
-      //   use: { ...devices['Desktop Firefox'] },
-      // },
-      // {
-      //   name: 'Webkit',
-      //   use: { ...devices['Desktop Safari'] },
-      // },
-   ],
+      {
+        name: 'Data Exchange Tests',
+        testMatch: 'dataExchange/features/*.spec.js', // Match only .feature files in the dataExchange/features folder
+        use: { ...devices['Desktop Chrome'] },
+      },
+      {
+        name: 'Dispensing Entity Enrollment Tests',
+        testMatch: 'dispensingEntityEnrollment/features/*.spec.js', // Match only .feature files
+        use: { ...devices['Desktop Chrome'] },
+      },
+      {
+        name: 'Manufacturer Enrollment Tests',
+        testMatch: 'manufacturerEnrollment/features/*.spec.js', // Match only .feature files
+        use: { ...devices['Desktop Chrome'] },
+      },
+      {
+        name: 'Reports Tests',
+        testMatch: 'reports/features/*.spec.js', // Match only .feature files
+        use: { ...devices['Desktop Chrome'] },
+      },
+      {
+        name: 'Shared Tests',
+        testMatch: 'shared/features/*.spec.js', // Match only .spec.js files in shared/features
+        use: { ...devices['Desktop Chrome'] },
+      },
+      {
+        name: 'User Management Tests',
+        testMatch: 'userManagement/features/*.spec.js', // Match only .feature files
+        use: { ...devices['Desktop Chrome'] },
+      },
+    ],
+   
 
    // Reporters
    reporter: [
