@@ -17,10 +17,10 @@ export default defineConfig({
 
    // Parallel test execution
    fullyParallel: false,
-   workers: 4, // Number of parallel workers
+   workers: 1, // Number of parallel workers
 
    // Retries for flaky tests
-   retries: 2, // Retries tests up to 2 times if they fail
+   retries: 1, // Retries tests up to 2 times if they fail
 
    // Shared test configuration
    use: {
@@ -41,37 +41,37 @@ export default defineConfig({
    projects: [
       {
         name: 'Claims Tests',
-        testMatch: 'claims/features/*.spec.js', // Match only .feature files in the claims/features folder
+        testMatch: 'claims/features/**/*', // Match only .feature files in the claims/features folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Data Exchange Tests',
-        testMatch: 'dataExchange/features/*.spec.js', // Match only .feature files in the dataExchange/features folder
+        testMatch: 'dataExchange/features/**/*', // Match tests in the Data Exchange folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Dispensing Entity Enrollment Tests',
-        testMatch: 'dispensingEntityEnrollment/features/*.spec.js', // Match only .feature files in the Dispensing Entity Enrollment folder
+        testMatch: 'dispensingEntityEnrollment/features/**/*', // Match tests in the Dispensing Entity Enrollment folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Manufacturer Enrollment Tests',
-        testMatch: 'manufacturerEnrollment/features/*.spec.js', // Match only .feature files in the Manufacturer Enrollment folder
+        testMatch: 'manufacturerEnrollment/features/**/*', // Match tests in the Manufacturer Enrollment folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Reports Tests',
-        testMatch: 'reports/features/*.spec.js', // Match only .feature files in the Reports folder
+        testMatch: 'reports/features/**/*', // Match tests files in the Reports folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Shared Tests',
-        testMatch: 'shared/features/*.spec.js', // Match only .feature files in the Shared folder
+        testMatch: 'shared/features/**/*', // Match tests files in the Shared folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'User Management Tests',
-        testMatch: 'userManagement/features/*.spec.js', // Match only .feature files in the User Management folder
+        testMatch: 'userManagement/features/**/*', // Match tests files in the User Management folder
         use: { ...devices['Desktop Chrome'] },
       },
     ],
