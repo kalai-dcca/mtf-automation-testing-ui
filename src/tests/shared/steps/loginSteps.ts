@@ -20,3 +20,7 @@ Then('I should see the dashboard', async ({ page }) => {
     const dashboardHeader = "//h6[text()='Dashboard']"; // Update with your actual locator
     await expect(page.locator(dashboardHeader)).toBeVisible(); // Assertion for successful login
 });
+
+Then('I validate that {string} is displayed on the page', async ({ page }, text: string) => {
+     await expect(page.getByText(text, {exact:true})).toBeVisible(); // Assertion for text
+ });

@@ -1,4 +1,5 @@
 import { Page } from 'playwright/test';
+import { UIActionUtilities } from '../../../utilities/UIActionUtilities';
 
 // --- Element Locators --- //
 const loc_username = "//input[@name='username']";
@@ -27,15 +28,19 @@ export class LoginPage {
     * @param pass Password (default: admin123)
     */
    async login(user: string = 'Admin', pass: string = 'admin123') {
-      await this.page.locator(loc_username).fill(user);
-      await this.page.locator(loc_password).fill(pass);
-      await this.page.locator(loc_signinBttn).click();
+      const usernameLocator = this.page.locator(loc_username);
+      await UIActionUtilities.inputElement(usernameLocator, user);
+      const passwordLocator = this.page.locator(loc_password);
+      await UIActionUtilities.inputElement(passwordLocator, pass);
+      const signinButtonLocator = this.page.locator(loc_signinBttn);
+      await UIActionUtilities.findElementClick(signinButtonLocator);
    }
 
    /**
     * Validates that the login was successful by checking for the dashboard element.
     */
    async validateDashboard() {
-      await this.page.locator(loc_dashboard).waitFor({ state: 'visible', timeout: 5000 });
+      const dashboardLocator = this.page.locator(loc_dashboard);
+      await UIActionUtilities.waitForVisibility(dashboardLocator);
    }
 }

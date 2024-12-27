@@ -48,7 +48,7 @@ export class UIActionUtilities{
      * @param Locator
      * @returns 
      */    
-    async findElementClick(Locator: Locator): Promise<boolean>{
+    static async findElementClick(Locator: Locator): Promise<boolean>{
         try{
             await expect(Locator).toBeVisible({timeout:30,visible:true});
             await Locator.click();
@@ -84,7 +84,7 @@ export class UIActionUtilities{
      * @param text 
      * @returns 
      */
-    async inputElement(Locator: Locator, text: string): Promise<boolean>{
+    static async inputElement(Locator: Locator, text: string): Promise<boolean>{
         try{
             await expect(Locator).toBeVisible({timeout:30,visible:true});
             await Locator.fill(text);
@@ -139,7 +139,7 @@ export class UIActionUtilities{
      * @param timeout 
      * @returns 
      */
-    async waitForVisibility(Locator: Locator, timeout: number = 30000): Promise<boolean>{
+    static async waitForVisibility(Locator: Locator, timeout: number = 30000): Promise<boolean>{
         try{
             await Locator.waitFor({state: 'visible',timeout})
             UIActionUtilities.print(FunctionType.WAIT_FOR_VISIBILITY,true,Locator);
