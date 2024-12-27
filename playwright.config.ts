@@ -51,27 +51,27 @@ export default defineConfig({
       },
       {
         name: 'Dispensing Entity Enrollment Tests',
-        testMatch: 'dispensingEntityEnrollment/features/*.spec.js', // Match only .feature files
+        testMatch: 'dispensingEntityEnrollment/features/*.spec.js', // Match only .feature files in the Dispensing Entity Enrollment folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Manufacturer Enrollment Tests',
-        testMatch: 'manufacturerEnrollment/features/*.spec.js', // Match only .feature files
+        testMatch: 'manufacturerEnrollment/features/*.spec.js', // Match only .feature files in the Manufacturer Enrollment folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Reports Tests',
-        testMatch: 'reports/features/*.spec.js', // Match only .feature files
+        testMatch: 'reports/features/*.spec.js', // Match only .feature files in the Reports folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Shared Tests',
-        testMatch: 'shared/features/*.spec.js', // Match only .spec.js files in shared/features
+        testMatch: 'shared/features/*.spec.js', // Match only .feature files in the Shared folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'User Management Tests',
-        testMatch: 'userManagement/features/*.spec.js', // Match only .feature files
+        testMatch: 'userManagement/features/*.spec.js', // Match only .feature files in the User Management folder
         use: { ...devices['Desktop Chrome'] },
       },
     ],
