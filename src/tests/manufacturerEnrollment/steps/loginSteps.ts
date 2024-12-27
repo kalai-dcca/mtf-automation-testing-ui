@@ -1,10 +1,10 @@
 import { Given, When, Then } from '../../../fixtures';
 
-import { LoginManufacturerPage } from '../pages/loginManufacturerPage';
+import { LoginPage } from '../../shared/pages/loginPage';
 
 
-Given('I login with a valid User', async ({page, homePage}) => {
-    const lp = new LoginManufacturerPage(page);
-   await lp.open();
-   await lp.processLogin();
+Given('I login with a valid User', async ({ page }) => {
+    const lp = new LoginPage(page);
+    await lp.open();
+    await lp.login();
 });
