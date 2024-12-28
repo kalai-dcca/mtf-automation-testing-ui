@@ -5,7 +5,6 @@ import { UIActionUtilities } from '../../../utilities/UIActionUtilities';
 const loc_username = "//input[@name='username']";
 const loc_password = "//input[@name='password']";
 const loc_signinBttn = "//button[@type='submit']";
-const loc_dashboard = "//h6[text()='Dashboard']"; // Locator to verify successful login
 
 export class LoginPage {
    private readonly page: Page;
@@ -28,19 +27,10 @@ export class LoginPage {
     * @param pass Password (default: admin123)
     */
    async login(user: string = 'Admin', pass: string = 'admin123') {
-      const usernameLocator = this.page.locator(loc_username);
-      await UIActionUtilities.inputElement(usernameLocator, user);
-      const passwordLocator = this.page.locator(loc_password);
-      await UIActionUtilities.inputElement(passwordLocator, pass);
-      const signinButtonLocator = this.page.locator(loc_signinBttn);
-      await UIActionUtilities.findElementClick(signinButtonLocator);
+      const uiau = new UIActionUtilities(this.page);
+      await uiau.inputElement(loc_username, user);
+      await uiau.inputElement(loc_password, pass);
+      await uiau.findElementClick(loc_signinBttn);
    }
 
-   /**
-    * Validates that the login was successful by checking for the dashboard element.
-    */
-   async validateDashboard() {
-      const dashboardLocator = this.page.locator(loc_dashboard);
-      await UIActionUtilities.waitForVisibility(dashboardLocator);
-   }
 }

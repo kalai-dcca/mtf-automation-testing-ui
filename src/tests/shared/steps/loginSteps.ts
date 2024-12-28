@@ -1,11 +1,9 @@
 import { Given, When, Then } from '../../../fixtures';
 import { expect } from 'playwright/test'; // Import expect
 
-import { LoginPage } from '../pages/loginPage';
 
-Given('I navigate to the login page', async ({ page }) => {
-    const testSite = process.env.SITE || 'https://opensource-demo.orangehrmlive.com/';
-    await page.goto(testSite);
+Given('I navigate to the login page', async ({ loginPage }) => {
+    await loginPage.open(); // Open the login page
 });
 
 When('I login with valid credentials', async ({ loginPage }) => {
@@ -16,9 +14,8 @@ When('I login with {string} username and {string} password', async ({ loginPage 
     await loginPage.login(username, password); // Uses default credentials: Admin/admin123
 });
 
-Then('I should see the dashboard', async ({ page }) => {
-    const dashboardHeader = "//h6[text()='Dashboard']"; // Update with your actual locator
-    await expect(page.locator(dashboardHeader)).toBeVisible(); // Assertion for successful login
+Then('I should see the dashboard', async ({ homePage }) => {
+    await homePage.validateDashboard(); // Assertion for successful login
 });
 
 Then('I validate that {string} is displayed on the page', async ({ page }, text: string) => {
