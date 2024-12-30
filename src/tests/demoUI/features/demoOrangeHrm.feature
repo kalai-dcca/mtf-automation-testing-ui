@@ -1,11 +1,15 @@
-Feature: Main menu Search functionality
+Feature: Admin User Management
   As a user
-  I want to search for items in the main menu
-  So that I can quickly find relevant results
+  I want to manage users in the Admin page
+  So that I can give users admin access
 
   @wip
-  Scenario Outline: Search test
+  Scenario Outline: Add user
     Given TestCaseDataSetup-"data", File-"demoOrangeHrmTestData.xlsx", Sheet-"Add-User", TestCase-"<TestCaseId>"
+    Given I login with a valid User
+    When I navigate to the Admin page
+    When I add a system user
     Examples:
       | TestCaseId |
       | C-TC001    |
+
