@@ -48,7 +48,8 @@ export class UIActionUtilities{
      * @param Locator
      * @returns 
      */    
-    async findElementClick(Locator: Locator): Promise<boolean>{
+    async findElementClick(locator: string): Promise<boolean>{
+        const Locator = this.page.locator(locator);
         try{
             await expect(Locator).toBeVisible({timeout:30,visible:true});
             await Locator.click();
@@ -66,7 +67,8 @@ export class UIActionUtilities{
      * @param Locator 
      * @returns 
      */
-    async isElementVisible(Locator: Locator): Promise<boolean>{
+    async isElementVisible(locator: string): Promise<boolean>{
+        const Locator = this.page.locator(locator);
         try{
             await expect(Locator).toBeVisible({timeout:30,visible:true});
             UIActionUtilities.print(FunctionType.VERIFY_ELEMENT_VISIBILITY,true,Locator);
@@ -84,7 +86,8 @@ export class UIActionUtilities{
      * @param text 
      * @returns 
      */
-    async inputElement(Locator: Locator, text: string): Promise<boolean>{
+    async inputElement(locator: string, text: string): Promise<boolean>{
+        const Locator = this.page.locator(locator);
         try{
             await expect(Locator).toBeVisible({timeout:30,visible:true});
             await Locator.fill(text);
@@ -103,7 +106,8 @@ export class UIActionUtilities{
      * @param expected 
      * @returns 
      */
-    async verifyElementText(Locator: Locator, expected: string): Promise<boolean>{
+    async verifyElementText(locator: string, expected: string): Promise<boolean>{
+        const Locator = this.page.locator(locator);
         try{
             await expect(Locator).toBeVisible({timeout:30,visible:true});
             await expect(Locator).toHaveText(expected);
@@ -139,7 +143,8 @@ export class UIActionUtilities{
      * @param timeout 
      * @returns 
      */
-    async waitForVisibility(Locator: Locator, timeout: number = 30000): Promise<boolean>{
+    async waitForVisibility(locator: string, timeout: number = 30000): Promise<boolean>{
+        const Locator = this.page.locator(locator);
         try{
             await Locator.waitFor({state: 'visible',timeout})
             UIActionUtilities.print(FunctionType.WAIT_FOR_VISIBILITY,true,Locator);
