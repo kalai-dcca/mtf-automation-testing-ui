@@ -16,11 +16,10 @@ Then('the following navigation options should be displayed:', async ({page}, dat
   const expectedOptions = dataTable.rawTable.slice(1).map(row => row[0]); // Remove the header row
 
   // Locate the navigation options in the sidebar/menu
+  await page.waitForTimeout(1000);
   const mip = new MyInformationPage(page);
 
-  const actualOptions = await page
-    .locator("//*[@role='tablist']//a") // Adjust the selector to match the options in your sidebar
-    .allTextContents();
+  const actualOptions = await mip.getListOptions();
 
   // Verify that all expected options are present in the actual options
   for (const option of expectedOptions) {
