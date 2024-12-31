@@ -5,17 +5,18 @@ Feature: Verify navigation options under My Info
 
   @myInfo @regression_all
   Scenario: Verify navigation options under My Info
-    Given I login with a valid User
+    Given I navigate to the login page
+    And I login with valid credentials
     And I navigate to the "My Info" section
     Then the following navigation options should be displayed:
-      | Option Name           |
-      | Personal Details      |
-      | Contact Details       |
-      | Emergency Contacts    |
-      | Dependents            |
-      | Immigration           |
-      | Job                   |
-      | Salary                |
-      | Report-to             |
-      | Qualifications        |
-      | Memberships           |
+      | Option Name        |
+      | Personal Details   |
+      | Contact Details    |
+      | Emergency Contacts |
+      | Dependents         |
+      | Immigration        |
+      | Job                |
+      | Salary             |
+      | Report-to          |
+      | Qualifications     |
+      | Memberships        |
