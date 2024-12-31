@@ -1,86 +1,74 @@
 import { Given, When, Then } from '../../../fixtures';
 import { expect } from 'playwright/test';
 import { chromium, Browser, Page } from 'playwright';
-import path from 'path';
-// import { LoginManufacturerPage } from '../pages/loginManufacturerPage';
+
 
 
 
 const filePath = ('c:/Users/shanna/OneDrive - Data Computer Corporation of America (DCCA)/Documents/demo-1.txt');
 
 
-// Given('I login with a valid User', async ({}) => {
+Given('navigate to the app main page', async ({ page }) => {
 
-//     const browser: Browser = await chromium.launch();
-//    const context = await browser.newContext();
-//    const page: Page = await context.newPage();
-//    const url = 'https://demoqa.com/forms';
-
-//     async function switchTabs() {
-
-       
-//         // Open the first page
-//         await page.goto(url);
-
-//     }
-
-// });
-
-Given('verify the page title', async () => {
     const browser: Browser = await chromium.launch();
     const context = await browser.newContext();
-    const page: Page = await context.newPage();
+    // const page: Page = await context.newPage();
+  
+   const testSite = process.env.SITE || 'https://demoqa.com/forms';
+
+   // Open the first page
+   await page.goto(testSite);
+
 
     const firstTabTitle = await page.title();
-    console.log('Title After Clicking Second Tab:', firstTabTitle);
+    console.log('Title After Clicking Second Tab: ', firstTabTitle);
   
     // Verify The Title
     expect(firstTabTitle).toBe("DEMOQA");
-  
-    const alertsWindows = "//*[text()='Alerts, Frame & Windows']";
-    const browserWindows = "//*[text()='Browser Windows']";
+
+});
+
+When('verify the page title', async ({ page, context }) => {
+
+    const alertsWindows = "//div[text()='Alerts, Frame & Windows']";
+    const browserWindows = "//span[text()='Browser Windows']";
     const newTab = '#tabButton';
+
+    await page.locator(alertsWindows).click();
+    await page.locator(browserWindows).click();
+    await page.locator(newTab).click();
+    await page.waitForTimeout(5000);
+
+ // Start waiting for a new page before clicking the link
+ const [newPage] = await Promise.all([
+    context.waitForEvent('page'),
+    page.locator('#sampleHeading').click(),
+
+ ])
+ const header = await newPage.textContent('h1');
+ console.log(header);
+ expect (header?.trim()).toBe('This is a sample page');
+
+
+//   const newTabHeader = '#sampleHeading';
+//   await newPage.locator(newTabHeader).click();
+   
+ 
+   // Interact with the new page
+   await newPage.waitForLoadState();
+
+  await newPage.waitForTimeout(2000);
+  await newPage.reload();
+  await newPage.waitForTimeout(2000);
+
   
-    await page.click(alertsWindows);
-    await page.click(browserWindows);
-    await page.click(newTab);
 
-   // Open the Second page
-//    await switchTabs();
+  // Verify the URL of the new page
+//  expect(newPage.url()).toBe('https://demoqa.com/sample'); 
+  await newPage.waitForTimeout(5000);
 
-
+   // Close the new tab
+   await newPage.close();
 });
 
 
-Given('verify the new tab', async ({}) => {
- // Verify The URL
- const browser: Browser = await chromium.launch();
-const context = await browser.newContext();
- const page: Page = await context.newPage();
-  const currentURL = page.url();
-  
-  expect(currentURL).toBe("https://demoqa.com/sample"); 
-
-});
-
-Given('upload file', async ({}) => {
-    const browser: Browser = await chromium.launch();
-const context = await browser.newContext();
- const page: Page = await context.newPage();
-
-    const url = 'https://demoqa.com/forms';
-    // Upload File
-  await page.goto(url);
-
-  // Select the file input element
-  const Elements = await page.locator("//*[text()='Elements']").click();
-  const Upload_Download = await page.locator("//span[text()='Upload and Download']").click();
-  const chooseFile = await page.locator("uploadFile").click();
-  
-  const fileInputSelector = ("uploadFile");
-  
-  await page.locator(fileInputSelector).setInputFiles(filePath);
-
-  await browser.close();
-
-});
