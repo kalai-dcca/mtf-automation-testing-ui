@@ -50,7 +50,7 @@ export class UIActionUtilities{
      */
     static async isElementVisible(locator: Locator): Promise<void>{
         try{
-            await expect(locator).toBeVisible({timeout:30,visible:true});
+            await expect(locator).toBeVisible({timeout:30000,visible:true});
             this.log('isElementVisible', locator, true);
         }catch (error){
             this.handleError('isElementVisible', locator, error);
@@ -65,7 +65,7 @@ export class UIActionUtilities{
      */
     static async inputElement(locator: Locator, text: string): Promise<boolean>{
         try{
-            await expect(locator).toBeVisible({timeout:30,visible:true});
+            await expect(locator).toBeVisible({timeout:30000,visible:true});
             await locator.fill(text);
             this.log('inputElement', locator, true);
             return true;
@@ -84,7 +84,7 @@ export class UIActionUtilities{
      */
     static async verifyElementText(locator: Locator, expected: string): Promise<boolean>{
         try{
-            await expect(locator).toBeVisible({timeout:30,visible:true});
+            await expect(locator).toBeVisible({timeout:30000,visible:true});
             await expect(locator).toHaveText(expected);
             this.log('verifyElementText', locator, true);
             return true;
@@ -101,7 +101,7 @@ export class UIActionUtilities{
      */
     static async scrollToElement(locator: Locator ) : Promise<boolean>{
         try{
-            await expect(locator).toBeVisible({timeout:30,visible:true});
+            await expect(locator).toBeVisible({timeout:30000,visible:true});
             await locator.scrollIntoViewIfNeeded();
             this.log('scrollToElement', locator, true);
             return true; 

@@ -30,7 +30,6 @@ export class AdminUserManagementPage {
     
     const dataMap = TestScenarioContext.getTestCaseData();
 
-
     const employeeName = dataMap['Employee Name'];
     const username = dataMap['Username'];
     const password = dataMap['Password'];
@@ -47,7 +46,7 @@ export class AdminUserManagementPage {
     await UIActionUtilities.inputElement(this.page.locator(this.passwordTextBox), password);
     await UIActionUtilities.inputElement(this.page.locator(this.confirmPasswordTextBox), confirmPassword);
     await UIActionUtilities.clickElement(this.page.locator(this.saveButton));
-    //await UIActionUtilities.isElementVisible(this.page.locator(this.employeeNameText));
+    await UIActionUtilities.isElementVisible(this.page.locator(this.employeeNameText));
 
   }
 
