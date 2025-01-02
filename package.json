@@ -15,6 +15,7 @@
    "description": "",
    "devDependencies": {
       "@cucumber/cucumber": "^11.1.1",
+      "@playwright/test": "^1.49.1",
       "@types/node": "^22.10.2",
       "playwright-bdd": "^8.0.0",
       "prettier": "^3.4.2"
