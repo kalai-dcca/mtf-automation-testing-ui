@@ -40,7 +40,7 @@ class SoftAssertUI {
         }
     }
 
-    async assertElement(locator: Locator, message: string): Promise<void>{
+    async assertElementDisabled(locator: Locator, message: string): Promise<void>{
         try{
             await expect(locator).toBeDisabled();
         }catch(error){
