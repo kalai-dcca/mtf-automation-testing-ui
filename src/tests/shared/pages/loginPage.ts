@@ -30,9 +30,9 @@ export class LoginPage {
       const uiau = new UIActionUtilities(this.page);
       await this.page.waitForSelector(loc_username);
       await this.page.waitForSelector(loc_password);
-      await uiau.inputElement(loc_username, user);
-      await uiau.inputElement(loc_password, pass);
-      await uiau.findElementClick(loc_signinBttn);
+      await UIActionUtilities.inputElement(this.page.locator(loc_username), user);
+      await UIActionUtilities.inputElement(this.page.locator(loc_password), pass);
+      await UIActionUtilities.clickElement(this.page.locator(loc_signinBttn));
    }
 
 }
