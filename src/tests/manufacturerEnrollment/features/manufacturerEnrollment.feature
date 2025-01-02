@@ -11,13 +11,6 @@ Feature: Main menu Search functionality
     Then I should see the matching results having "<keyword>"
 
     Examples:
-<<<<<<< HEAD
-    |keyword|
-    |Leave|
-    |Admin|
-
-=======
       | keyword |
       | Leave   |
       | Admin   |
->>>>>>> main
