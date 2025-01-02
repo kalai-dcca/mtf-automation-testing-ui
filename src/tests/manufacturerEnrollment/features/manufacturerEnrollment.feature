@@ -5,11 +5,19 @@ Feature: Main menu Search functionality
 
   @search @regression_all
   Scenario Outline: Search test
-    Given I login with a valid User
+    Given I navigate to the login page
+    And I login with valid credentials
     When I enter "<keyword>" in the search box
     Then I should see the matching results having "<keyword>"
+
     Examples:
+<<<<<<< HEAD
     |keyword|
     |Leave|
     |Admin|
 
+=======
+      | keyword |
+      | Leave   |
+      | Admin   |
+>>>>>>> main

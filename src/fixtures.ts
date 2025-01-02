@@ -2,10 +2,11 @@ import { test as base, createBdd } from 'playwright-bdd';
 import { TestScenarioContext } from './tests/demoUI/context/TestScenarioContext';
 
 // -- List of Page Object Class -- //
-import { Login } from './tests/userManagement/pages/login';
-import { Home } from './tests/userManagement/pages/home';
-import { LoginManufacturerPage } from './tests/manufacturerEnrollment/pages/loginManufacturerPage';
 import { HomePageSidePanel } from './tests/manufacturerEnrollment/pages/sidePanel';
+import { LoginPage } from './tests/shared/pages/loginPage';
+import { HomePage } from './tests/shared/pages/homePage';
+import { Page } from '@playwright/test';
+
 
 // Define custom fixtures interface for test case setup
 interface CustomFixtures {
@@ -16,26 +17,21 @@ interface CustomFixtures {
 }
 
 type pageObjFixtures = {
-   loginPage: Login;
-   homePage: Home;
-
-   loginManufacturerPage: LoginManufacturerPage;  
+   loginPage: LoginPage;
+   homePage: HomePage;
    searchPage: HomePageSidePanel;
    testScenarioContext: TestScenarioContext;
 } & CustomFixtures;
 
 // -- Page Object Fixtures -- //
 export const test = base.extend<pageObjFixtures>({
-   loginPage: async ({ page }, use) => {
-      await use(new Login(page));
-   },
-   homePage: async ({ page }, use) => {
-      await use(new Home(page));
-   },
 
-   // loginManufacturerPage: async ({ page }, use) => {
-   //    await use(new LoginManufacturer(page));
-   // },   
+   loginPage: async ({ page }: { page: Page }, use: (page: LoginPage) => Promise<void>) => {
+      await use(new LoginPage(page));
+   },
+  homePage: async ({ page }, use) => {
+   await use(new HomePage(page));
+   },
    searchPage: async ({ page }, use) => {
       await use(new HomePageSidePanel(page));
    },  
@@ -43,7 +39,7 @@ export const test = base.extend<pageObjFixtures>({
       const context = new TestScenarioContext(); // Create a new context for each scenario
       await use(context);
    },
-
+ 
    // Custom fixtures for test case setup
    directory: async ({}, use) => {
       const dir = ''; // Value will be passed from Gherkin step

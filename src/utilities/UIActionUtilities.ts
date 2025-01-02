@@ -29,18 +29,19 @@ export class UIActionUtilities{
     
 
     /**
+/**
      * Click Element
      * @param locator Playwright Locator for the radio button group
      * 
      */
-    static async clickElement(locator: Locator): Promise<void> {
-        try {
-            await locator.click();
-            this.log('clickElement', locator, true);
-        } catch (error) {
-            this.handleError('clickElement', locator, error);
+        static async clickElement(locator: Locator): Promise<void> {
+            try {
+                await locator.click();
+                this.log('clickElement', locator, true);
+            } catch (error) {
+                this.handleError('clickElement', locator, error);
+            }
         }
-    }
 
 
     /**
@@ -141,7 +142,7 @@ export class UIActionUtilities{
 
             if (ignoreCase) {
                 const options = await locator.locator('option').allTextContents();
-                const match = options.find(opt => opt.toLowerCase() === value.toLowerCase());
+                const match = options.find((opt: string) => opt.toLowerCase() === value.toLowerCase());
 
                 if (match) {
                     await locator.selectOption({ label: match });
@@ -167,7 +168,7 @@ export class UIActionUtilities{
         try {
             await expect(locator).toBeVisible();
             const options = await locator.locator('option').allTextContents();
-            const match = options.find(option => option.includes(partialText));
+            const match = options.find((option: string | string[]) => option.includes(partialText));
 
             if (match) {
                 await locator.selectOption({ label: match });
@@ -258,7 +259,7 @@ export class UIActionUtilities{
      * @param expectedText Expected alert text
      */
     static async handleAlert(page: Page, action: 'accept' | 'dismiss', expectedText?: string): Promise<void> {
-        page.on('dialog', async dialog => {
+        page.on('dialog', async (dialog: { message: () => any; accept: () => any; dismiss: () => any; }) => {
             if (expectedText) {
                 expect(dialog.message()).toContain(expectedText);
             }
