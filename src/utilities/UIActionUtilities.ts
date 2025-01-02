@@ -89,7 +89,6 @@ export class UIActionUtilities{
     async inputElement(locator: string, text: string): Promise<boolean>{
         const Locator = this.page.locator(locator);
         try{
-            await this.page.waitForTimeout(500);
             await expect(Locator).toBeVisible({timeout:30,visible:true});
             await Locator.fill(text);
             UIActionUtilities.print(FunctionType.INPUT_TEXT_FIELD,true,Locator,text);
