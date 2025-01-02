@@ -29,9 +29,8 @@ export class LoginPage {
     */
    async login(user: string = 'Admin', pass: string = 'admin123') {
       const uiau = new UIActionUtilities(this.page);
-
-      await softAssertUI.assertElementPresent(this.page,loc_username,"Username is missing");
-
+      await this.page.waitForSelector(loc_username);
+      await this.page.waitForSelector(loc_password);
       await uiau.inputElement(loc_username, user);
 
       await softAssertUI.assertElementPresent(this.page,loc_password,"Password is missing");

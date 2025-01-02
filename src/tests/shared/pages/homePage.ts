@@ -15,7 +15,8 @@ export class HomePage {
     * Navigates to the test site.
     */
    async open() {
-      const testSite = process.env.SITE || 'https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index';
+      const testSite = process.env.SITE || 'https://opensource-demo.orangehrmlive.com/';
+      await this.page.waitForLoadState('domcontentloaded');
       await this.page.goto(testSite);
    }
 
