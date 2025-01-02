@@ -43,7 +43,6 @@ When('verify the page title', async ({ page, context }) => {
  const [newPage] = await Promise.all([
     context.waitForEvent('page'),
     page.locator('#sampleHeading').click(),
-
  ])
  const header = await newPage.textContent('h1');
  console.log(header);
