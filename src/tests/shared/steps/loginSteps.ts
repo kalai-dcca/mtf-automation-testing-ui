@@ -1,5 +1,6 @@
 import { Given, When, Then } from '../../../fixtures';
 import { expect } from 'playwright/test'; // Import expect
+import { softAssertUI } from '../../../utilities/SoftAssertUI';
 
 
 Given('I navigate to the login page', async ({ loginPage }) => {
@@ -19,5 +20,7 @@ Then('I should see the dashboard', async ({ homePage }) => {
 });
 
 Then('I validate that {string} is displayed on the page', async ({ page }, text: string) => {
-    await expect(page.getByText(text, {exact:true}).first()).toBeVisible(); // Assertion for text
+     await expect(page.getByText(text, {exact:true})).toBeVisible(); // Assertion for text
+     
+     softAssertUI.checkFailures();
  });
