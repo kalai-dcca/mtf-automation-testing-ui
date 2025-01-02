@@ -20,7 +20,6 @@
       "playwright-bdd": "^8.0.0",
       "prettier": "^3.4.2"
    },
-   "dependencies": {
-      "cucumber": "^6.0.7"
+   "dependencies": {   
    }
 }
