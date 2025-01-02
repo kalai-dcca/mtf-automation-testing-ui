@@ -25,6 +25,6 @@ export class HomePage {
     */
    async validateDashboard() {
       const uiau = new UIActionUtilities(this.page);
-      await uiau.waitForVisibility(loc_dashboard);
+      await UIActionUtilities.waitForVisibility(this.page.locator(loc_dashboard));
    }
 }
