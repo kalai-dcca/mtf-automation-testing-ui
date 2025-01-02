@@ -28,6 +28,8 @@ export class LoginPage {
     */
    async login(user: string = 'Admin', pass: string = 'admin123') {
       const uiau = new UIActionUtilities(this.page);
+      await this.page.waitForSelector(loc_username);
+      await this.page.waitForSelector(loc_password);
       await uiau.inputElement(loc_username, user);
       await uiau.inputElement(loc_password, pass);
       await uiau.findElementClick(loc_signinBttn);
