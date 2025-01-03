@@ -22,6 +22,7 @@ export class AdminUserManagementPage {
   private adminListItem = "//div[@role='option']/span[text()='Admin']"
   private statusDropdown = "(//i[contains(@class, 'oxd-icon bi-caret-down-fill oxd-select-text--arrow')])[2]";
   private enabledListItem = "//div[@role='option']/span[text()='Enabled']"
+  private yesDeleteButton = "//button[text()=' Yes, Delete ']";
   //private employeeNameText = "//div[text()='Timothy Amiano']";
   //private employeeNameListItem = "//span[text()='Timothy Lewis Amiano']";
   //private deleteButton = "//div[text()='Timothy Amiano']/ancestor::div[contains(@class, 'oxd-table-row')]//i[@class='oxd-icon bi-trash']";
@@ -36,7 +37,7 @@ export class AdminUserManagementPage {
   }
 
   private getemployeeNameListItemLocator(employeeFullName: string): string {
-    return `//div[text()='${employeeFullName}']/ancestor::div[contains(@class, 'oxd-table-row')]//i[@class='oxd-icon bi-trash']`;
+    return `//span[text()='${employeeFullName}']`;
   }
 
   // Methods
@@ -67,8 +68,9 @@ export class AdminUserManagementPage {
 
   async deleteUser() {
     const dataMap = TestScenarioContext.getTestCaseData();
-    const employeeName = dataMap['Username'];
+    const employeeName = dataMap['Employee Name'];
     await UIActionUtilities.clickElement(this.page.locator(this.getDeleteButtonLocator(employeeName)));
+    await UIActionUtilities.clickElement(this.page.locator(this.yesDeleteButton));
   }
 
 
