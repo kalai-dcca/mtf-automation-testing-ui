@@ -37,15 +37,15 @@ export class LoginPage {
 
       await softAssertUI.assertElementPresent(loc_username,"Username is missing");
 
-      await uiau.inputElement(loc_username, user);
+      await UIActionUtilities.inputElement(this.page.locator(loc_username), user);
 
       await softAssertUI.assertElementPresent(loc_password,"Password is missing");
 
-      await uiau.inputElement(loc_password, pass);
+      await UIActionUtilities.inputElement(this.page.locator(loc_password), pass);
 
       await softAssertUI.assertElementPresent(loc_signinBttn,"Signin button is missing");
 
-      await uiau.findElementClick(loc_signinBttn);
+      await UIActionUtilities.clickElement(this.page.locator(loc_signinBttn));
 
       softAssertUI.checkFailures();
    }
