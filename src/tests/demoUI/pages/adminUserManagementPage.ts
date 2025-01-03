@@ -22,8 +22,23 @@ export class AdminUserManagementPage {
   private adminListItem = "//div[@role='option']/span[text()='Admin']"
   private statusDropdown = "(//i[contains(@class, 'oxd-icon bi-caret-down-fill oxd-select-text--arrow')])[2]";
   private enabledListItem = "//div[@role='option']/span[text()='Enabled']"
-  private employeeNameText = "//div[text()='Timothy Amiano']";
-  private employeeNameListItem = "//span[text()='Timothy Lewis Amiano']";
+  private yesDeleteButton = "//button[text()=' Yes, Delete ']";
+  //private employeeNameText = "//div[text()='Timothy Amiano']";
+  //private employeeNameListItem = "//span[text()='Timothy Lewis Amiano']";
+  //private deleteButton = "//div[text()='Timothy Amiano']/ancestor::div[contains(@class, 'oxd-table-row')]//i[@class='oxd-icon bi-trash']";
+
+  // Methods to generate dynamic locators
+  private getEmployeeNameTextLocator(employeeName: string): string {
+    return `//div[text()='${employeeName}']`;
+  }
+
+  private getDeleteButtonLocator(employeeName: string): string {
+    return `//div[text()='${employeeName}']/ancestor::div[contains(@class, 'oxd-table-row')]//i[@class='oxd-icon bi-trash']`;
+  }
+
+  private getemployeeNameListItemLocator(employeeFullName: string): string {
+    return `//span[text()='${employeeFullName}']`;
+  }
 
   // Methods
   async addSystemUser() {
@@ -31,6 +46,7 @@ export class AdminUserManagementPage {
     const dataMap = TestScenarioContext.getTestCaseData();
 
     const employeeName = dataMap['Employee Name'];
+    const employeeFullName = dataMap['Employee Full Name'];
     const username = dataMap['Username'];
     const password = dataMap['Password'];
     const confirmPassword = dataMap['Confirm Password'];
@@ -39,15 +55,23 @@ export class AdminUserManagementPage {
     await UIActionUtilities.clickElement(this.page.locator(this.userRoleDropdown));
     await UIActionUtilities.clickElement(this.page.locator(this.adminListItem));
     await UIActionUtilities.inputElement(this.page.locator(this.employeeNameTextBox), employeeName);
-    await UIActionUtilities.clickElement(this.page.locator(this.employeeNameListItem));
+    await UIActionUtilities.clickElement(this.page.locator(this.getemployeeNameListItemLocator(employeeFullName)));
     await UIActionUtilities.clickElement(this.page.locator(this.statusDropdown));
     await UIActionUtilities.clickElement(this.page.locator(this.enabledListItem));
     await UIActionUtilities.inputElement(this.page.locator(this.usernameTextBox), username);
     await UIActionUtilities.inputElement(this.page.locator(this.passwordTextBox), password);
     await UIActionUtilities.inputElement(this.page.locator(this.confirmPasswordTextBox), confirmPassword);
     await UIActionUtilities.clickElement(this.page.locator(this.saveButton));
-    await UIActionUtilities.isElementVisible(this.page.locator(this.employeeNameText));
+    await UIActionUtilities.isElementVisible(this.page.locator(this.getEmployeeNameTextLocator(employeeName)));
 
   }
+
+  async deleteUser() {
+    const dataMap = TestScenarioContext.getTestCaseData();
+    const employeeName = dataMap['Employee Name'];
+    await UIActionUtilities.clickElement(this.page.locator(this.getDeleteButtonLocator(employeeName)));
+    await UIActionUtilities.clickElement(this.page.locator(this.yesDeleteButton));
+  }
+
 
 }

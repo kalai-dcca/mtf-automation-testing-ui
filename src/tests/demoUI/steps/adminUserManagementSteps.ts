@@ -7,3 +7,9 @@ When('I add a system user', async ({page, homePage}) => {
     await au.addSystemUser();
     
 });
+
+When('I delete the user', async ({page, homePage}) => {
+    const au = new AdminUserManagementPage(page);
+    await au.deleteUser();
+    
+});
