@@ -5,6 +5,7 @@ import { UIActionUtilities } from '../../../utilities/UIActionUtilities';
 const loc_username = "//input[@name='username']";
 const loc_password = "//input[@name='password']";
 const loc_signinBttn = "//button[@type='submit']";
+import { softAssertUI } from '../../../utilities/SoftAssertUI';
 
 export class LoginPage {
    private readonly page: Page;
@@ -28,8 +29,19 @@ export class LoginPage {
     */
    async login(user: string = 'Admin', pass: string = 'admin123') {
       const uiau = new UIActionUtilities(this.page);
+      await this.page.waitForSelector(loc_username);
+      await this.page.waitForSelector(loc_password);
+
+      await softAssertUI.assertElementPresent(this.page,loc_username,"Username is missing");
+
       await uiau.inputElement(loc_username, user);
+
+      await softAssertUI.assertElementPresent(this.page,loc_password,"Password is missing");
+
       await uiau.inputElement(loc_password, pass);
+
+      await softAssertUI.assertElementPresent(this.page,loc_signinBttn,"Signin button is missing");
+
       await uiau.findElementClick(loc_signinBttn);
    }
 
