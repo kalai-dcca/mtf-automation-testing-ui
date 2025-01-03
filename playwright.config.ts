@@ -76,6 +76,11 @@ export default defineConfig({
         testMatch: 'userManagement/features/**/*', // Match tests files in the User Management folder
         use: { ...devices['Desktop Chrome'] },
       },
+      {
+        name: 'Demo Tests',
+        testMatch: 'demoUI/features/**/*', // Match tests files in the Demo Tests folder
+        use: { ...devices['Desktop Chrome'] },
+      },
     ],
    
 
