@@ -10,6 +10,7 @@ Feature: Admin User Management
     And I login with valid credentials
     When I navigate to the Admin page
     When I add a system user
+    Then I delete the user
     Examples:
       | TestCaseId |
       | C-TC001    |
