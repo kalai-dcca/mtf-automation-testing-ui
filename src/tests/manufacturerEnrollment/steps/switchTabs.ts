@@ -36,13 +36,13 @@ When('verify the page title', async ({ page, context }) => {
 
     await page.locator(alertsWindows).click();
     await page.locator(browserWindows).click();
-    await page.locator(newTab).click();
-    await page.waitForTimeout(5000);
+
 
  // Start waiting for a new page before clicking the link.
  const [newPage] = await Promise.all([
     context.waitForEvent('page'),
-    page.locator('#sampleHeading').click(),
+    page.locator(newTab).click(),
+        
  ])
  const header = await newPage.textContent('h1');
  console.log(header);
