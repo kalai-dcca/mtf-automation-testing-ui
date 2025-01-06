@@ -23,9 +23,7 @@ export class AdminUserManagementPage {
   private statusDropdown = "(//i[contains(@class, 'oxd-icon bi-caret-down-fill oxd-select-text--arrow')])[2]";
   private enabledListItem = "//div[@role='option']/span[text()='Enabled']"
   private yesDeleteButton = "//button[text()=' Yes, Delete ']";
-  //private employeeNameText = "//div[text()='Timothy Amiano']";
-  //private employeeNameListItem = "//span[text()='Timothy Lewis Amiano']";
-  //private deleteButton = "//div[text()='Timothy Amiano']/ancestor::div[contains(@class, 'oxd-table-row')]//i[@class='oxd-icon bi-trash']";
+  private deleteSuccessMessage = "//div[@class='oxd-toast-content oxd-toast-content--success']";
 
   // Methods to generate dynamic locators
   private getEmployeeNameTextLocator(employeeName: string): string {
@@ -71,6 +69,7 @@ export class AdminUserManagementPage {
     const employeeName = dataMap['Employee Name'];
     await UIActionUtilities.clickElement(this.page.locator(this.getDeleteButtonLocator(employeeName)));
     await UIActionUtilities.clickElement(this.page.locator(this.yesDeleteButton));
+    await UIActionUtilities.isElementVisible(this.page.locator(this.deleteSuccessMessage));
   }
 
 
