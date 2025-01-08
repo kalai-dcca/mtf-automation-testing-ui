@@ -1,6 +1,6 @@
 Feature: Verify The Swich Tabs Function
 
-  @wip2
+  @wip2 @regression_all
   Scenario: Verify The Swich Tabs Function and Upload file
     Given navigate to the app main page
     When verify the page title
