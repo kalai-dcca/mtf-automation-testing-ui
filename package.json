@@ -8,7 +8,9 @@
       "report": "npx playwright show-report reports",
       "usermngmt": "npx bddgen src/features/userManagement/login.feature && npx playwright test --headed",
       "uitest": "npx bddgen && npx playwright test --ui",
+
       "spesificTestTag": "npx bddgen && npx playwright test --grep @regression_all --headed"
+
    },
    "keywords": [],
    "author": "",
