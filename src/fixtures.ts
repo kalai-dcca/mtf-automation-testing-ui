@@ -6,6 +6,7 @@ import { HomePageSidePanel } from './tests/manufacturerEnrollment/pages/sidePane
 import { LoginPage } from './tests/shared/pages/loginPage';
 import { HomePage } from './tests/shared/pages/homePage';
 import { Page } from '@playwright/test';
+import { SwitchingTabsPage } from './tests/manufacturerEnrollment/pages/switchingTabsPage';
 
 
 // Define custom fixtures interface for test case setup
@@ -21,6 +22,7 @@ type pageObjFixtures = {
    homePage: HomePage;
    searchPage: HomePageSidePanel;
    testScenarioContext: TestScenarioContext;
+   switchingtabsPage: SwitchingTabsPage;
 } & CustomFixtures;
 
 // -- Page Object Fixtures -- //
@@ -38,6 +40,9 @@ export const test = base.extend<pageObjFixtures>({
    testScenarioContext: async ({}, use) => {
       const context = new TestScenarioContext(); // Create a new context for each scenario
       await use(context);
+   },
+   switchingtabsPage: async ({ page }, use) => {
+      await use(new SwitchingTabsPage(page));
    },
  
    // Custom fixtures for test case setup
