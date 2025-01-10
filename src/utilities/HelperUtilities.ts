@@ -64,8 +64,8 @@ export class HelperUtilities{
      * @param code 
      * @returns 
      */
-    static getStateText(code: string): string{
-        const states: {[key: string]: string} = {
+    static getStateText(code: string): string | null {
+        const states = {
             AL: 'Alabama',
             AK: 'Alaska',
             AZ: 'Arizona',
@@ -77,7 +77,7 @@ export class HelperUtilities{
             FL: 'Florida',
             GA: 'Georgia'
         }
-        return states[code.toUpperCase()] || "Invalid state code";
+        return states[code.toUpperCase()] || null;
     }
 
 
