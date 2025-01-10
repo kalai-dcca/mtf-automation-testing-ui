@@ -1,10 +1,10 @@
 import { test as base, createBdd } from 'playwright-bdd';
-import { TestScenarioContext } from './tests/dispensingEntityEnrollment/context/TestScenarioContext';
+import { TestScenarioContext } from './tests/tpseEnrollment/context/TestScenarioContext';
 
 // -- List of Page Object Class -- //
-import { HomePageSidePanel } from './tests/manufacturerEnrollment/pages/sidePanel';
-import { LoginPage } from './tests/common/pages/loginPage';
-import { HomePage } from './tests/common/pages/homePage';
+import { HomePageSidePanel } from './tests/manufacturer/pages/sidePanel';
+import { LoginPage } from './tests/example/pages/loginPage';
+import { HomePage } from './tests/example/pages/homePage';
 import { Page } from '@playwright/test';
 
 
