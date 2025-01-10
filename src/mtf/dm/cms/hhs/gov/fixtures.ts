@@ -3,10 +3,9 @@ import { TestScenarioContext } from './tests/demoUI/context/TestScenarioContext'
 
 // -- List of Page Object Class -- //
 import { HomePageSidePanel } from './tests/manufacturerEnrollment/pages/sidePanel';
-import { LoginPage } from './tests/shared/pages/loginPage';
-import { HomePage } from './tests/shared/pages/homePage';
+import { LoginPage } from './tests/common/pages/loginPage';
+import { HomePage } from './tests/common/pages/homePage';
 import { Page } from '@playwright/test';
-
 
 // Define custom fixtures interface for test case setup
 interface CustomFixtures {
@@ -64,4 +63,4 @@ export const test = base.extend<pageObjFixtures>({
 });
 
 // -- BDD Keyword Fixtures -- //
-export const { Given, When, Then } = createBdd(test);
+export const { Given, When, Then, Before, After, BeforeAll, BeforeScenario, BeforeWorker, AfterAll, AfterScenario, AfterWorker } = createBdd(test);

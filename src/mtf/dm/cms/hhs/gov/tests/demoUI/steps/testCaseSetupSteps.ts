@@ -8,7 +8,7 @@ Given(
         console.log('Received Parameters:', { dir, file, sheet, testCase });
   
         // Directly use the received parameters for setup
-        const testCaseFile = `src/tests/demoUI/${dir}/${file}`;
+        const testCaseFile = `src/mtf/dm/cms/hhs/gov/tests/demoUI/${dir}/${file}`;
         const excelUtils = new ExcelUtils(testCaseFile, sheet);
         const testCaseData = await excelUtils.getAllDataFromRow(testCase);
   
