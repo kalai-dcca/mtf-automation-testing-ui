@@ -1,6 +1,6 @@
 import { Page } from 'playwright/test';
-import { UIActionUtilities } from '../../../utilities/UIActionUtilities';
-import SoftAssertUI from "../../../utilities/SoftAssertUI"
+import { UIActionUtilities } from '../../../commonUtilities/UIActionUtilities';
+import SoftAssertUI from "../../../commonUtilities/SoftAssertUI"
 
 // --- Element Locators --- //
 const loc_username = "//input[@name='username']";

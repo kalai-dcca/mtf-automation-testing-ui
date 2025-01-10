@@ -3,9 +3,9 @@ import { defineBddConfig } from 'playwright-bdd';
 
 // Define BDD configuration
 const testDir = defineBddConfig({
-   features: 'src/tests/**/features/', // Path to feature files
-   steps: 'src/tests/**/steps/', // Path to step definition files
-   importTestFrom: 'src/fixtures.ts', // Optional: Shared fixtures
+  features: 'src/mtf/dm/cms/hhs/gov/tests/**/features/', // Path to feature files
+  steps: ['src/mtf/dm/cms/hhs/gov/tests/**/steps/', 'src/mtf/dm/cms/hhs/gov/tests/globalHooks.ts', 'src/mtf/dm/cms/hhs/gov/tests/**/util/hooks.ts'], // Path to step definition files
+  importTestFrom: 'src/mtf/dm/cms/hhs/gov/fixtures.ts', // Optional: Shared fixtures
 });
 
 export default defineConfig({
@@ -33,7 +33,7 @@ export default defineConfig({
       video: 'retain-on-failure', // Record video on failures
       ignoreHTTPSErrors: true, // Ignore HTTPS errors
       launchOptions: {
-         slowMo: 50, // Add a delay for debugging (optional)
+         slowMo: 100, // Add a delay for debugging (optional)
       },
 
    },
@@ -91,8 +91,4 @@ export default defineConfig({
       ['json', { outputFile: 'reports/report.json' }], // JSON report
       ['junit', { outputFile: 'reports/junit-report.xml' }], // JUnit report
    ],
-
-   // Optional global setup and teardown (commented out for now)
-   // globalSetup: require.resolve('./global-setup'),
-   // globalTeardown: require.resolve('./global-teardown'),
 });

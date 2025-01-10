@@ -1,5 +1,5 @@
 import { Page } from '@playwright/test';
-import { UIActionUtilities } from '../../../utilities/UIActionUtilities';
+import { UIActionUtilities } from '../../../commonUtilities/UIActionUtilities';
 import { TestScenarioContext } from '../context/TestScenarioContext';
 
 

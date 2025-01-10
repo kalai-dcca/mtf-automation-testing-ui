@@ -7,7 +7,8 @@
       "headed": "npx bddgen && npx playwright test --headed",
       "report": "npx playwright show-report reports",
       "usermngmt": "npx bddgen src/features/userManagement/login.feature && npx playwright test --headed",
-      "uitest": "npx bddgen && npx playwright test --ui"
+      "uitest": "npx bddgen && npx playwright test --ui",
+      "type-check": "npx tsc --noEmit" 
    },
    "keywords": [],
    "author": "",
