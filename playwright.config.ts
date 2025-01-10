@@ -4,7 +4,7 @@ import { defineBddConfig } from 'playwright-bdd';
 // Define BDD configuration
 const testDir = defineBddConfig({
   features: 'src/mtf/dm/cms/hhs/gov/tests/**/features/', // Path to feature files
-  steps: ['src/mtf/dm/cms/hhs/gov/tests/**/steps/', 'src/mtf/dm/cms/hhs/gov/tests/globalHooks.ts', 'src/mtf/dm/cms/hhs/gov/tests/**/util/hooks.ts'], // Path to step definition files
+  steps: ['src/mtf/dm/cms/hhs/gov/tests/**/steps/', 'src/mtf/dm/cms/hhs/gov/commonUtilities/globalHooks.ts', 'src/mtf/dm/cms/hhs/gov/tests/**/util/hooks.ts'], // Path to step definition files
   importTestFrom: 'src/mtf/dm/cms/hhs/gov/fixtures.ts', // Optional: Shared fixtures
 });
 
@@ -43,22 +43,22 @@ export default defineConfig({
    projects: [
       {
         name: 'Claims Tests',
-        testMatch: 'claims/features/**/*', // Match only .feature files in the claims/features folder
+        testMatch: 'claimsManagement/features/**/*', // Match only .feature files in the claims/features folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Data Exchange Tests',
-        testMatch: 'dataExchange/features/**/*', // Match tests in the Data Exchange folder
+        testMatch: 'deIDR/features/**/*', // Match tests in the Data Exchange folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Dispensing Entity Enrollment Tests',
-        testMatch: 'dispensingEntityEnrollment/features/**/*', // Match tests in the Dispensing Entity Enrollment folder
+        testMatch: 'tpseEnrollment/features/**/*', // Match tests in the Dispensing Entity Enrollment folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'Manufacturer Enrollment Tests',
-        testMatch: 'manufacturerEnrollment/features/**/*', // Match tests in the Manufacturer Enrollment folder
+        testMatch: 'manufacturer/features/**/*', // Match tests in the Manufacturer Enrollment folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
@@ -68,17 +68,12 @@ export default defineConfig({
       },
       {
         name: 'Shared Tests',
-        testMatch: 'shared/features/**/*', // Match tests files in the Shared folder
+        testMatch: 'example/features/**/*', // Match tests files in the Shared folder
         use: { ...devices['Desktop Chrome'] },
       },
       {
         name: 'User Management Tests',
         testMatch: 'userManagement/features/**/*', // Match tests files in the User Management folder
-        use: { ...devices['Desktop Chrome'] },
-      },
-      {
-        name: 'Demo Tests',
-        testMatch: 'demoUI/features/**/*', // Match tests files in the Demo Tests folder
         use: { ...devices['Desktop Chrome'] },
       },
     ],
