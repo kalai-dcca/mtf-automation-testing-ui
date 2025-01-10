@@ -22,6 +22,7 @@
       "playwright": "^1.49.1",
       "playwright-bdd": "^8.0.0",
       "prettier": "^3.4.2"
+      
    },
    "dependencies": {
       "xlsx": "^0.18.5"
