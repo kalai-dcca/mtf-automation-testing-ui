@@ -1,5 +1,5 @@
 import { Page } from 'playwright/test';
-import { UIActionUtilities } from '../../../utilities/UIActionUtilities';
+import { UIActionUtilities } from '../../../commonUtilities/UIActionUtilities';
 
 // --- Element Locators --- //
 const loc_dashboard = "//h6[text()='Dashboard']"; // Locator to verify successful login

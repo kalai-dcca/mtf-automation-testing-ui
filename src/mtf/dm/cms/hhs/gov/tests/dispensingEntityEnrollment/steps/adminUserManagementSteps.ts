@@ -1,6 +1,6 @@
 import { Given, When, Then } from '../../../fixtures';
 
-import { AdminUserManagementPage } from '../pages/adminUserManagementPage';
+import { AdminUserManagementPage } from '../../dispensingEntityEnrollment/pages/adminUserManagementPage';
 
 When('I add a system user', async ({page, homePage}) => {
     const au = new AdminUserManagementPage(page);
